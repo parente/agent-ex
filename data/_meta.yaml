@@ -1,0 +1,51 @@
+lastUpdated: "2026-04-18"
+
+families:
+  - id: instructions
+    label: Instructions
+    description: Persistent context the agent sees every session — project conventions, coding standards, always-on guidance
+  - id: prompts
+    label: Prompts
+    description: Reusable prompt templates explicitly invoked as slash commands or by name
+  - id: skills
+    label: Skills
+    description: Reusable workflows, knowledge, and prompt templates invoked on demand or auto-loaded when relevant
+  - id: mcp-tools
+    label: MCP & Tools
+    description: Connections to external services, APIs, and databases via Model Context Protocol
+  - id: agents
+    label: Agents
+    description: Specialist personas, isolated workers, or coordinated teams with distinct prompts and tools
+  - id: hooks
+    label: Hooks
+    description: Deterministic automation that runs on lifecycle events outside the LLM loop
+  - id: plugins-distribution
+    label: Plugins & Distribution
+    description: Packaging, sharing, and installing bundles of skills, hooks, agents, and MCP servers
+  - id: settings-policy
+    label: Settings & Policy
+    description: Tool configuration, managed settings, command rules, and organizational controls
+
+scopes:
+  - id: user-home
+    label: User / Home
+  - id: project-root
+    label: Project / Repo Root
+  - id: subdirectory
+    label: Subdirectory / Folder
+  - id: organization
+    label: Organization / Enterprise
+  - id: cloud-session
+    label: Cloud / Web Session
+  - id: machine
+    label: Machine / Admin
+
+claimStrengths:
+  - id: explicit
+    label: Explicit
+  - id: strongly-implied
+    label: Strongly Implied
+  - id: inferred
+    label: Inferred
+  - id: unspecified
+    label: Unspecified
