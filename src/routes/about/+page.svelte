@@ -11,6 +11,19 @@
   <h1 class="text-2xl font-bold mb-6">About Agent-Ex</h1>
 
   <div
+    class="rounded-lg border border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-950/40 px-4 py-3 mb-6 text-sm text-amber-900 dark:text-amber-200"
+  >
+    <p class="font-semibold">⚠️ Experimental project</p>
+    <p class="mt-1">
+      Agent-Ex is a research experiment. The data is gathered and maintained
+      primarily by AI agents and may be incomplete, outdated, or inaccurate.
+      Always refer to official vendor documentation for authoritative
+      information. The author makes no warranty regarding the accuracy or
+      completeness of the content.
+    </p>
+  </div>
+
+  <div
     class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-4"
   >
     <p>
@@ -104,10 +117,13 @@
     <h2 class="text-lg font-semibold mt-8 mb-3">Source and accuracy</h2>
 
     <p>
-      Every data point links to its upstream documentation source. Since vendor
-      docs change frequently, some information may be outdated. Use the source
-      links to verify current status, and consider running the update skill to
-      refresh the data.
+      This is an experimental, AI-driven project. The initial research was
+      conducted by AI, and ongoing updates are performed by AI agents that crawl
+      vendor documentation. While every data point links to its upstream source,
+      the information may be incomplete, outdated, or inaccurate. Always use the
+      source links to verify facts against official vendor documentation. The
+      author makes no warranty regarding the accuracy or completeness of the
+      content presented here.
     </p>
   </div>
 </div>

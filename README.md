@@ -3,6 +3,8 @@
 - A web app for exploring and comparing extension points across agentic coding tools
 - An experiment in using agents to keep web app data up to date
 
+> **⚠️ Experimental project.** Agent-Ex is a research experiment. The data is gathered and maintained primarily by AI agents and may be incomplete, outdated, or inaccurate. Always refer to official vendor documentation for authoritative information. The author makes no warranty regarding the accuracy or completeness of the content.
+
 ## Background
 
 Major agentic coding tools now support a common core of extension points — persistent instructions, reusable workflows, MCP tool adapters, specialist agents, hooks, distribution/bundling, and policy/configuration — but they differ significantly in where customization lives, how it's scoped, and how shareable it is. Agent-Ex normalizes these vendor-specific concepts into a shared taxonomy so you can quickly compare what's available across tools.
