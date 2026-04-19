@@ -1,0 +1,31 @@
+name: Test CI permissions
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install Kiro CLI
+        run: curl -fsSL https://cli.kiro.dev/install | bash
+
+      - name: Test commit and PR
+        env:
+          KIRO_API_KEY: ${{ secrets.KIRO_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PROMPT=$(cat <<'EOF'
+          1. Create a file docs/test.md with the content "Hello from CI".
+          2. Use gh to create a new branch, commit the file, push it, and open a pull request
+             titled "chore(test): CI permissions check" with body "Safe to close — testing workflow permissions."
+          EOF
+          )
+          kiro-cli chat --no-interactive --trust-all-tools --model claude-opus-4.6 "$PROMPT"
