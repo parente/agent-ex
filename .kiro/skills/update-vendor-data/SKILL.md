@@ -163,6 +163,14 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference
 - https://docs.github.com/en/copilot/reference/policy-conflicts
 - https://code.visualstudio.com/docs/copilot/customization/prompt-files
+- https://docs.github.com/en/copilot/concepts/agents/copilot-memory
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/enterprise-configuration
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/configure-toolsets
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/change-mcp-registry
+- https://docs.github.com/en/copilot/reference/copilot-allowlist-reference
+- https://docs.github.com/en/copilot/reference/agentic-audit-log-events
+- https://docs.github.com/en/copilot/reference/copilot-cli-reference/acp-server
+- https://docs.github.com/en/copilot/how-tos/copilot-sdk/use-hooks/quickstart
 
 ### OpenAI Codex
 - https://developers.openai.com/codex/concepts/customization
@@ -190,6 +198,13 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://developers.openai.com/codex/agent-approvals-security
 - https://developers.openai.com/codex/enterprise/governance
 - https://developers.openai.com/codex/feature-maturity
+- https://developers.openai.com/codex/noninteractive
+- https://developers.openai.com/codex/sdk
+- https://developers.openai.com/codex/app-server
+- https://developers.openai.com/codex/github-action
+- https://developers.openai.com/codex/speed
+- https://developers.openai.com/codex/security
+- https://developers.openai.com/codex/app/automations
 
 ### Amazon Kiro
 - https://kiro.dev/docs/steering/
@@ -230,6 +245,9 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/enterprise/governance/api-keys/
 - https://kiro.dev/docs/cli/chat/permissions/
 - https://kiro.dev/docs/cli/chat/configuration/
+- https://kiro.dev/docs/cli/mcp/registry/
+- https://kiro.dev/docs/cli/headless/
+- https://kiro.dev/docs/enterprise/governance/
 
 ### Claude Code
 - https://code.claude.com/docs/en/features-overview
