@@ -6,6 +6,33 @@ Update the Agent-Ex data files in `data/` by checking upstream documentation for
 
 Use this skill when asked to update, refresh, or add vendor data for the Agent-Ex extension point explorer.
 
+## Writing guidelines
+
+The data files power a quick-glance comparison UI. Every piece of text should be as short as possible while remaining accurate.
+
+### Conservatism
+
+- **Prefer no change.** Only update a field if upstream docs show a clear, material difference from what's already recorded. Cosmetic rewording, minor version bumps, and trivial additions are not worth a diff.
+- **Don't accumulate detail.** Each update pass should leave files roughly the same length. If you add a sentence, remove one. The goal is a concise snapshot, not a changelog.
+- **When in doubt, leave it out.** If a feature is mentioned once in a blog post but not in official docs, skip it.
+
+### Brevity targets
+
+| Field | Target |
+|---|---|
+| `notes` | 1–2 sentences. Status, key surfaces, and one distinguishing detail. No implementation specifics, no config key names, no version numbers unless critical. |
+| `trustModel` | 1 sentence. How the tool treats this extension from a trust/execution standpoint. |
+| `vendorTerms` | Only terms a user would search for. No internal config keys or file paths. |
+| Markdown prose body | 2–3 sentences. What makes this vendor's approach distinctive at a glance. |
+
+### Consistency rules
+
+- Use the same sentence structure across vendors for the same family. If one vendor's `trustModel` for hooks says "Deterministic scripts that run on lifecycle events; can block tool use," all vendors' hooks `trustModel` should follow that pattern.
+- Use semicolons to separate independent clauses within a field, not periods.
+- Don't start `notes` with the extension name or "Supported in…" — lead with the most distinctive fact.
+- `availability.status` values: `current`, `public preview`, `experimental`, `deprecated`. Don't qualify further in `notes`.
+- Keep `sources` arrays to 2–4 entries — the most authoritative pages, not every page that mentions the topic.
+
 ## Data schema
 
 Each vendor is a Markdown file in `data/` with YAML frontmatter. The schema is:
@@ -85,7 +112,8 @@ Before starting, read `data/_meta.yaml` to load the current families, scopes, an
    - Update changed scopes, interfaces, or availability status
    - Add new or renamed vendor terms
    - Add new source URLs to the appropriate extension's `sources` array
-   - Preserve the existing Markdown prose body — only update it if the distillations indicate significant new information about the vendor's overall approach
+   - Preserve the existing Markdown prose body — only update it if the distillations indicate significant new information about the vendor's overall approach in comparison to the others
+   - Follow the writing guidelines above — every field must stay within its brevity target in comparison to the others
 
 7. **Validate changes**: Ensure every `normalizedFamily` matches a family in `data/_meta.yaml` and every scope matches a scope in `data/_meta.yaml`.
 
@@ -163,6 +191,14 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference
 - https://docs.github.com/en/copilot/reference/policy-conflicts
 - https://code.visualstudio.com/docs/copilot/customization/prompt-files
+- https://docs.github.com/en/copilot/concepts/agents/copilot-memory
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/enterprise-configuration
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/configure-toolsets
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/change-mcp-registry
+- https://docs.github.com/en/copilot/reference/copilot-allowlist-reference
+- https://docs.github.com/en/copilot/reference/agentic-audit-log-events
+- https://docs.github.com/en/copilot/reference/copilot-cli-reference/acp-server
+- https://docs.github.com/en/copilot/how-tos/copilot-sdk/use-hooks/quickstart
 
 ### OpenAI Codex
 - https://developers.openai.com/codex/concepts/customization
@@ -190,6 +226,13 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://developers.openai.com/codex/agent-approvals-security
 - https://developers.openai.com/codex/enterprise/governance
 - https://developers.openai.com/codex/feature-maturity
+- https://developers.openai.com/codex/noninteractive
+- https://developers.openai.com/codex/sdk
+- https://developers.openai.com/codex/app-server
+- https://developers.openai.com/codex/github-action
+- https://developers.openai.com/codex/speed
+- https://developers.openai.com/codex/security
+- https://developers.openai.com/codex/app/automations
 
 ### Amazon Kiro
 - https://kiro.dev/docs/steering/
@@ -230,6 +273,9 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/enterprise/governance/api-keys/
 - https://kiro.dev/docs/cli/chat/permissions/
 - https://kiro.dev/docs/cli/chat/configuration/
+- https://kiro.dev/docs/cli/mcp/registry/
+- https://kiro.dev/docs/cli/headless/
+- https://kiro.dev/docs/enterprise/governance/
 
 ### Claude Code
 - https://code.claude.com/docs/en/features-overview
