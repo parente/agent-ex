@@ -41,7 +41,7 @@
 
 	<div class="space-y-6">
 		{#each data.vendor.extensions as ext}
-			<div class="border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+			<div id={ext.normalizedFamily} class="border border-gray-200 dark:border-gray-700 rounded-lg p-5">
 				<div class="flex items-center gap-2 mb-3">
 					<h2 class="text-lg font-semibold">{ext.name}</h2>
 					<a href="/family/{ext.normalizedFamily}" class="ml-auto px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors">
@@ -49,6 +49,11 @@
 					</a>
 				</div>
 
+				{#if ext.coveredBy}
+					<p class="text-sm text-gray-400 dark:text-gray-500 italic">
+						→ <a href="#{ext.coveredBy.family}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline">{ext.coveredBy.label}</a>
+					</p>
+				{:else}
 				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
 					<div>
 						<span class="text-gray-500 dark:text-gray-400 text-xs block mb-1">Vendor Terms</span>
@@ -93,6 +98,7 @@
 						<a href={source.url} target="_blank" rel="noopener" class="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">{source.label} ↗</a>
 					{/each}
 				</div>
+				{/if}
 			</div>
 		{/each}
 	</div>

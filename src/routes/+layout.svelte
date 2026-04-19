@@ -99,6 +99,6 @@
 
 	<!-- Footer -->
 	<footer class="border-t border-gray-200 dark:border-gray-800 py-4 text-center text-xs text-gray-400">
-		Data last updated {data.nav.lastUpdated} · Auto-generated from upstream docs and may be inaccurate · <a href="https://github.com" class="hover:text-gray-600 dark:hover:text-gray-300">Agent-Ex</a>
+		Data last updated {data.nav.lastUpdated} · Auto-generated from upstream docs and may be inaccurate · <a href="https://github.com/parente/agent-ex" class="hover:text-gray-600 dark:hover:text-gray-300">Agent-Ex</a>
 	</footer>
 </div>

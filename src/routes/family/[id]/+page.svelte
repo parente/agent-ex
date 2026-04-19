@@ -40,6 +40,11 @@
 				</div>
 
 				{#if entry}
+					{#if entry.extension.coveredBy}
+						<p class="text-sm text-gray-400 dark:text-gray-500 italic">
+							→ <a href="/family/{entry.extension.coveredBy.family}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline">{entry.extension.coveredBy.label}</a>
+						</p>
+					{:else}
 					<div class="space-y-3 text-sm">
 						<div>
 							<span class="text-gray-500 dark:text-gray-400 text-xs block mb-1">Extension Name</span>
@@ -85,6 +90,7 @@
 							{/each}
 						</div>
 					</div>
+					{/if}
 				{:else}
 					<p class="text-sm text-gray-400 italic">Not documented for this vendor</p>
 				{/if}

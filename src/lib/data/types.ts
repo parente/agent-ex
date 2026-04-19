@@ -9,6 +9,11 @@ export interface Availability {
 	notes: string;
 }
 
+export interface CoveredBy {
+	family: string;
+	label: string;
+}
+
 export interface Extension {
 	name: string;
 	normalizedFamily: string;
@@ -18,6 +23,7 @@ export interface Extension {
 	availability: Availability;
 	trustModel: string;
 	sources: Source[];
+	coveredBy?: CoveredBy;
 }
 
 export interface Vendor {

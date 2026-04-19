@@ -27,33 +27,34 @@ extensions:
 
   - name: Skills
     normalizedFamily: prompts
-    vendorTerms: [skills, SKILL.md, commands, custom commands, slash commands, .claude/skills/<name>/SKILL.md, .claude/commands/*.md, bundled skills, Agent Skills standard]
+    coveredBy:
+      family: skills
+      label: Covered by Skills
+    vendorTerms: []
+    scopes: []
+    interfaces: []
+    availability:
+      status: current
+      claimStrength: explicit
+      notes: ""
+    trustModel: ""
+    sources: []
+
+  - name: Skills
+    normalizedFamily: skills
+    vendorTerms: [skills, SKILL.md, commands, custom commands, slash commands, .claude/skills/<name>/SKILL.md, .claude/commands/*.md, reference skills, action skills, Agent Skills standard, bundled skills]
     scopes: [project-root, user-home, organization]
     interfaces: [terminal CLI, VS Code, Desktop, web]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Skills are the primary prompt/workflow mechanism; legacy .claude/commands/ still works. Dual invocation: user via /name and model-invoked automatically. Follows Agent Skills open standard (agentskills.io). Bundled skills: /batch, /debug, /simplify, /loop, /claude-api, /fewer-permission-prompts. MCP prompts surface as /mcp__<server>__<prompt>. Enterprise deployment via managed settings."
-    trustModel: "Reusable knowledge and workflows; auto-loaded when relevant or invoked via /name; skills can pre-approve tools via allowed-tools frontmatter; enterprise managed settings can disable shell execution in skills"
+      notes: "Reference skills provide knowledge, action skills trigger workflows; can run in isolated context via subagents. Dual invocation: user via /name and model-invoked automatically. Legacy .claude/commands/ still works. Follows Agent Skills open standard (agentskills.io). Rich frontmatter: model, effort, context:fork, agent, hooks, paths, allowed-tools. Dynamic context injection via shell preprocessing. Auto-discovered from nested directories (monorepo support). Skill content persists with auto-compaction budget (5K tokens each, 25K combined). Bundled skills: /batch, /debug, /simplify, /loop, /claude-api, /fewer-permission-prompts. MCP prompts surface as /mcp__<server>__<prompt>. Skills can pre-approve tools via allowed-tools frontmatter. Enterprise deployment via managed settings; managed settings can disable shell execution in skills."
+    trustModel: "Reusable knowledge and workflows; auto-loaded when relevant or invoked via /name; bundled skills like /simplify, /batch, /debug included; enterprise deployment via managed settings"
     sources:
       - label: "Extend Claude with skills"
         url: "https://code.claude.com/docs/en/skills"
       - label: "Commands reference"
         url: "https://code.claude.com/docs/en/commands"
-
-  - name: Skills (knowledge and workflows)
-    normalizedFamily: skills
-    vendorTerms: [skills, SKILL.md, reference skills, action skills, Agent Skills standard, bundled skills]
-    scopes: [project-root, user-home, organization]
-    interfaces: [terminal CLI, VS Code, Desktop, web]
-    availability:
-      status: current
-      claimStrength: explicit
-      notes: "Reference skills provide knowledge, action skills trigger workflows; can run in isolated context via subagents. Follows Agent Skills open standard. Rich frontmatter: model, effort, context:fork, agent, hooks, paths, allowed-tools. Dynamic context injection via shell preprocessing. Auto-discovered from nested directories (monorepo support). Skill content persists with auto-compaction budget (5K tokens each, 25K combined)."
-    trustModel: "Reusable knowledge and workflows; auto-loaded when relevant or invoked via /name; bundled skills like /simplify, /batch, /debug included; enterprise deployment via managed settings"
-    sources:
-      - label: "Extend Claude with skills"
-        url: "https://code.claude.com/docs/en/skills"
 
   - name: MCP Servers
     normalizedFamily: mcp-tools
