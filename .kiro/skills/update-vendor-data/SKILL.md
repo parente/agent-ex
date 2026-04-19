@@ -34,50 +34,74 @@ extensions:
 
 The Markdown body after the frontmatter contains general prose about the vendor.
 
-## Normalized families (from data/_meta.yaml)
-
-- `instructions` — Persistent context: custom instructions, steering, CLAUDE.md, AGENTS.md, rules
-- `prompts` — Reusable prompt templates: prompt files, custom prompts, commands
-- `skills` — Reusable workflows and knowledge: skills, prompt files, commands
-- `mcp-tools` — External tool connections: MCP servers, LSP
-- `agents` — Specialist personas and workers: custom agents, subagents, agent teams
-- `hooks` — Deterministic lifecycle automation: hooks
-- `plugins-distribution` — Shareable bundles: plugins, powers, marketplaces
-- `settings-policy` — Configuration and controls: settings, config, rules (command execution), managed settings
-
-## Scopes (from data/_meta.yaml)
-
-- `user-home` — User / Home directory
-- `project-root` — Project / Repo Root
-- `subdirectory` — Subdirectory / Folder
-- `organization` — Organization / Enterprise
-- `cloud-session` — Cloud / Web Session
-- `machine` — Machine / Admin
-
 ## Update procedure
 
-For each vendor:
+### Prerequisites
 
-1. **Read the current data file** from `data/<vendor-id>.md`
-2. **Fetch known source URLs** listed in each extension's `sources` array
-3. **Search for new or changed documentation** using targeted web searches scoped to the vendor's documentation domain (see vendor domains below). Use queries like:
-   - `site:docs.github.com/en/copilot skills hooks agents 2026`
-   - `site:developers.openai.com/codex new features`
-   - `site:kiro.dev/docs hooks skills agents`
-   - `site:code.claude.com/docs plugins subagents`
-4. **Compare upstream docs against current data** — look for:
-   - New extension points not yet in the data
-   - Changed scopes, interfaces, or availability status
-   - New or renamed vendor terms
-   - New source URLs that should be tracked
-5. **Update the vendor data file** with any changes found
-6. **Add any new source URLs** discovered during the search to the appropriate extension's `sources` array
-7. **Update this skill file** — add any new source URLs to the "Known source URLs" section below so future update runs start from a more complete list
-8. **Update `lastUpdated`** in `data/_meta.yaml`
+Before starting, read `data/_meta.yaml` to load the current families, scopes, and claim strengths. These are the canonical definitions — do not rely on any inline copies.
 
-### Important: self-updating source list
+### Phase 1 — Fan-out research
 
-The "Known source URLs" section at the bottom of this file is a starting point, not a complete list. Vendor docs change frequently — new pages are added, old ones are reorganized. When you discover a new relevant URL during a web search or by following links in fetched docs, **add it to the list below** so the next update cycle benefits from it.
+1. **Read current data**: Read all `data/*.md` vendor files and this skill file to build a research matrix of (vendor, family) pairs. For each pair, collect:
+   - The current extension YAML block(s) for that family
+   - The source URLs listed in those extensions
+   - The vendor's documentation domain (from "Vendor documentation domains" below)
+   - Any additional known URLs for that vendor (from "Known source URLs" below) that are relevant to the family
+
+2. **Create the research directory**: Ensure `.research/` exists.
+
+3. **Spawn research subagents**: Use the `subagent` tool in `blocking` mode to spawn one stage per (vendor, family) pair. All stages run in parallel (no `depends_on`). Each stage should use:
+   - `role`: `vendor-researcher`
+   - `name`: `research-{vendor-id}-{family-id}`
+   - `prompt_template`: A prompt that includes:
+     - The vendor ID, name, and documentation domain
+     - The family ID and label
+     - The current extension data for this (vendor, family) pair
+     - The list of known source URLs to fetch
+     - Instructions to perform web searches using `site:{vendor-domain}` queries with terms related to the family (e.g., the vendor terms, family label)
+     - The output file path: `.research/{vendor-id}/{family-id}.md`
+     - The distillation template:
+
+       ```
+       # Research: {vendor-name} / {family-label}
+       ## Current Data Summary
+       (Brief summary of what's currently in the data file for this family)
+       ## Findings from Known URLs
+       (For each URL fetched: what changed or was confirmed, key facts extracted)
+       ## New URLs Discovered
+       (Any new documentation pages found via web search, with brief description)
+       ## Recommended Changes
+       (Specific additions, updates, or removals to the extension data)
+       ```
+
+4. **Wait for completion**: The `blocking` mode ensures all research stages finish before proceeding.
+
+### Phase 2 — Gather and synthesize
+
+5. **Read distillations**: For each vendor, read all `.research/{vendor-id}/*.md` files.
+
+6. **Update vendor data files**: For each vendor, compare the distilled findings against `data/{vendor-id}.md` and apply updates:
+   - Add new extension points not yet in the data
+   - Update changed scopes, interfaces, or availability status
+   - Add new or renamed vendor terms
+   - Add new source URLs to the appropriate extension's `sources` array
+   - Preserve the existing Markdown prose body — only update it if the distillations indicate significant new information about the vendor's overall approach
+
+7. **Validate changes**: Ensure every `normalizedFamily` matches a family in `data/_meta.yaml` and every scope matches a scope in `data/_meta.yaml`.
+
+### Phase 3 — Meta-review and self-update
+
+8. **Flag taxonomy changes**: Review all distillation files holistically for cross-vendor patterns:
+   - New capability categories that don't fit existing families
+   - Families that appear deprecated or renamed across multiple vendors
+   - Emerging scopes not yet in `_meta.yaml`
+   - If any taxonomy changes are warranted, **present recommendations to the user** and wait for confirmation before modifying `data/_meta.yaml` families or scopes.
+
+9. **Update known source URLs**: Add any newly discovered URLs from the distillation files to the "Known source URLs by vendor" section of this skill file, organized under the appropriate vendor heading.
+
+10. **Update lastUpdated**: Set `lastUpdated` in `data/_meta.yaml` to today's date.
+
+11. **Clean up**: Remove the `.research/` directory and its contents.
 
 ## Adding a new vendor
 
@@ -106,7 +130,7 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/reference/custom-instructions-support
 - https://docs.github.com/en/copilot/reference/customization-cheat-sheet
 - https://docs.github.com/en/copilot/tutorials/customization-library/prompt-files
-- https://docs.github.com/en/copilot/concepts/prompting/response-customization?tool=vscode
+- https://docs.github.com/en/copilot/concepts/prompting/response-customization
 - https://docs.github.com/en/copilot/concepts/context/mcp
 - https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server
 - https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/use-the-github-mcp-server
@@ -122,6 +146,23 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies
 - https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot
 - https://docs.github.com/en/copilot/reference/copilot-feature-matrix
+- https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents
+- https://docs.github.com/en/copilot/reference/custom-agents-configuration
+- https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills
+- https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/add-skills
+- https://docs.github.com/en/copilot/how-tos/copilot-sdk/use-copilot-sdk/custom-skills
+- https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-registry
+- https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-server-access
+- https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp
+- https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers
+- https://docs.github.com/en/copilot/reference/hooks-configuration
+- https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/use-hooks
+- https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing
+- https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating
+- https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-marketplace
+- https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference
+- https://docs.github.com/en/copilot/reference/policy-conflicts
+- https://code.visualstudio.com/docs/copilot/customization/prompt-files
 
 ### OpenAI Codex
 - https://developers.openai.com/codex/concepts/customization
@@ -135,15 +176,20 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://developers.openai.com/codex/plugins
 - https://developers.openai.com/codex/plugins/build
 - https://developers.openai.com/codex/subagents
+- https://developers.openai.com/codex/concepts/subagents
 - https://developers.openai.com/codex/ide
 - https://developers.openai.com/codex/ide/settings
 - https://developers.openai.com/codex/app
+- https://developers.openai.com/codex/app/features
 - https://developers.openai.com/codex/cloud
 - https://developers.openai.com/codex/custom-prompts
 - https://developers.openai.com/codex/rules
 - https://developers.openai.com/codex/memories
 - https://help.openai.com/en/articles/11369540-using-codex-with-chatgpt
 - https://developers.openai.com/codex/enterprise/managed-configuration
+- https://developers.openai.com/codex/agent-approvals-security
+- https://developers.openai.com/codex/enterprise/governance
+- https://developers.openai.com/codex/feature-maturity
 
 ### Amazon Kiro
 - https://kiro.dev/docs/steering/
@@ -152,9 +198,15 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/cli/hooks/
 - https://kiro.dev/docs/hooks/actions/
 - https://kiro.dev/docs/hooks/types/
+- https://kiro.dev/docs/hooks/examples/
 - https://kiro.dev/docs/editor/multi-root-workspaces/
 - https://kiro.dev/docs/mcp/
 - https://kiro.dev/docs/mcp/configuration/
+- https://kiro.dev/docs/mcp/usage/
+- https://kiro.dev/docs/mcp/servers/
+- https://kiro.dev/docs/mcp/security/
+- https://kiro.dev/docs/cli/mcp/
+- https://kiro.dev/docs/cli/mcp/configuration/
 - https://kiro.dev/docs/editor/interface/
 - https://kiro.dev/docs/skills/
 - https://kiro.dev/docs/cli/skills/
@@ -162,11 +214,22 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/cli/custom-agents/configuration-reference/
 - https://kiro.dev/docs/chat/subagents/
 - https://kiro.dev/docs/cli/chat/subagents/
+- https://kiro.dev/docs/cli/chat/planning-agent/
+- https://kiro.dev/docs/cli/acp/
 - https://kiro.dev/docs/powers/
 - https://kiro.dev/docs/powers/installation/
+- https://kiro.dev/docs/powers/create/
 - https://kiro.dev/docs/cli/chat/manage-prompts/
 - https://kiro.dev/powers/
 - https://kiro.dev/docs/editor/extension-registry/
+- https://kiro.dev/docs/editor/kiroignore/
+- https://kiro.dev/docs/enterprise/settings/
+- https://kiro.dev/docs/enterprise/governance/mcp/
+- https://kiro.dev/docs/enterprise/governance/model/
+- https://kiro.dev/docs/enterprise/governance/web-tools/
+- https://kiro.dev/docs/enterprise/governance/api-keys/
+- https://kiro.dev/docs/cli/chat/permissions/
+- https://kiro.dev/docs/cli/chat/configuration/
 
 ### Claude Code
 - https://code.claude.com/docs/en/features-overview
@@ -187,4 +250,10 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://code.claude.com/docs/en/plugins-reference
 - https://code.claude.com/docs/en/discover-plugins
 - https://code.claude.com/docs/en/output-styles
+- https://code.claude.com/docs/en/server-managed-settings
+- https://code.claude.com/docs/en/plugin-marketplaces
+- https://code.claude.com/docs/en/plugin-hints
+- https://code.claude.com/docs/en/plugin-dependencies
+- https://code.claude.com/docs/en/channels
+- https://code.claude.com/docs/en/sdk/subagents
 - https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously
