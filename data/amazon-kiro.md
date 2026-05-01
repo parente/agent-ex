@@ -25,11 +25,11 @@ extensions:
     normalizedFamily: prompts
     vendorTerms: [prompts, reusable prompts, MCP prompts]
     scopes: [project-root, user-home]
-    interfaces: [CLI]
+    interfaces: [IDE, CLI]
     availability:
       status: current
       claimStrength: explicit
-      notes: "CLI only; local, global, and MCP prompt sources with local > global > MCP priority; invoked with @name"
+      notes: "File-based prompts are CLI only; MCP prompts accessible in both CLI and IDE via mention syntax; local > global > MCP priority; invoked with @name"
     trustModel: "Reusable prompt templates invoked manually; content previewed before sending to model"
     sources:
       - label: "Manage prompts"
@@ -44,7 +44,7 @@ extensions:
       status: current
       claimStrength: explicit
       notes: "Progressive disclosure (name+description at startup, full content on demand); IDE supports slash command invocation and importing from GitHub repos; workspace takes priority over global"
-    trustModel: "Reusable text-only instruction packages loaded on demand; cannot execute code on their own"
+    trustModel: "Reusable instruction packages loaded on demand; can include scripts for deterministic tasks but activation is controlled by the agent"
     sources:
       - label: "Skills for IDE"
         url: "https://kiro.dev/docs/skills/"
@@ -77,7 +77,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "CLI agents are JSON configs with tools, resources, hooks, and MCP servers; IDE subagents are Markdown with YAML frontmatter; DAG-based task dependencies for CLI subagents; headless mode for CI/CD; ACP enables CLI agents in JetBrains and Zed"
+      notes: "CLI agents are JSON configs with tools, resources, hooks, and MCP servers; IDE subagents are Markdown with YAML frontmatter; DAG-based task dependencies for CLI subagents; headless mode for CI/CD; autonomous agent (preview) runs asynchronously in sandboxed environments"
     trustModel: "Isolated workers that default to read-only; write tools require explicit opt-in via allowedTools globs"
     sources:
       - label: "Creating custom agents"
@@ -113,7 +113,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "IDE only; bundles POWER.md, MCP server config, and optional steering/hooks; 40+ curated and community powers via kiro.dev marketplace; install from kiro.dev, IDE panel, or GitHub URL"
+      notes: "IDE only; bundles POWER.md, MCP server config, and optional steering/hooks; 60+ partner and community powers via kiro.dev marketplace; install from kiro.dev, IDE panel, or GitHub URL"
     trustModel: "Packaging layer for IDE distribution; third-party powers explicitly disclaimed; no sandboxing mentioned"
     sources:
       - label: "Powers docs"

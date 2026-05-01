@@ -7,7 +7,7 @@ vendor:
 extensions:
   - name: Custom Instructions
     normalizedFamily: instructions
-    vendorTerms: [custom instructions, repository instructions, organization instructions, AGENTS.md, Copilot Memory]
+    vendorTerms: [custom instructions, repository instructions, organization instructions, AGENTS.md, CLAUDE.md, GEMINI.md, Copilot Memory]
     scopes: [user-home, project-root, subdirectory, organization]
     interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK]
     availability:
@@ -43,7 +43,7 @@ extensions:
     normalizedFamily: prompts
     vendorTerms: [prompt files, reusable prompts, slash commands]
     scopes: [project-root, user-home]
-    interfaces: [VS Code, Visual Studio, JetBrains, Xcode]
+    interfaces: [VS Code, Visual Studio, JetBrains]
     availability:
       status: current
       claimStrength: explicit
@@ -97,7 +97,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "8 hook types including preToolUse (can deny), postToolUse, sessionStart/End; SDK exposes hooks programmatically via JSON-RPC"
+      notes: "8 hook types including preToolUse (can deny), postToolUse, sessionStart/End; SDK exposes hooks programmatically via native language callbacks"
     trustModel: "Deterministic scripts that run synchronously on lifecycle events; can block tool use"
     sources:
       - label: "About hooks"
