@@ -103,10 +103,10 @@ extensions:
     scopes: [user-home, project-root]
     interfaces: [CLI, IDE extension]
     availability:
-      status: experimental
+      status: current
       claimStrength: explicit
-      notes: "Behind feature flag; 5 hook events; PreToolUse/PostToolUse only intercept Bash tool calls; multiple hooks run concurrently"
-    trustModel: "Deterministic scripts that run on lifecycle events; PreToolUse can deny commands but enforcement is incomplete"
+      notes: "6 hook events including PermissionRequest; PreToolUse/PostToolUse intercept Bash, apply_patch, and MCP tool calls; managed hooks via requirements.toml; multiple hooks run concurrently"
+    trustModel: "Deterministic scripts that run on lifecycle events; PreToolUse can deny commands; enterprise managed hooks via requirements.toml"
     sources:
       - label: "Hooks"
         url: "https://developers.openai.com/codex/hooks"
@@ -135,7 +135,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Requirements are admin-enforced and cannot be overridden; cloud-managed requirements for Business/Enterprise; rules (experimental) use Starlark-based prefix_rule; 4-level feature maturity taxonomy"
+      notes: "Requirements are admin-enforced and cannot be overridden; cloud-managed requirements for Business/Enterprise with group-based assignment; rules use TOML-based prefix_rules with pattern tokens; 4-level feature maturity taxonomy"
     trustModel: "Admin-enforced requirements cannot be overridden; OS-level sandbox (macOS Seatbelt, Linux bwrap+seccomp)"
     sources:
       - label: "Config basics"

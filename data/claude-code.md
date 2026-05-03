@@ -46,7 +46,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Reference skills provide knowledge, action skills trigger workflows; follows Agent Skills open standard (agentskills.io); many built-in skills (/batch, /debug, /simplify, /ultraplan, /schedule); enterprise deployment via managed settings"
+      notes: "Reference skills provide knowledge, action skills trigger workflows; follows Agent Skills open standard (agentskills.io); bundled skills include /batch, /debug, /simplify, /loop, and /claude-api; enterprise deployment via managed settings"
     trustModel: "Reusable knowledge and workflows loaded on demand or invoked via /name; enterprise deployment via managed settings"
     sources:
       - label: "Skills"
@@ -72,7 +72,7 @@ extensions:
 
   - name: Subagents
     normalizedFamily: agents
-    vendorTerms: [subagents, custom subagents, managed subagents, agent teams]
+    vendorTerms: [subagents, custom subagents, managed subagents]
     scopes: [user-home, project-root, organization, cloud-session]
     interfaces: [terminal CLI, VS Code, Desktop, web]
     availability:
@@ -108,8 +108,8 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "4 handler types (command, http, prompt, agent) across 26 lifecycle events; async hooks run in background; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering"
-    trustModel: "Deterministic scripts that run on lifecycle events; supports shell, HTTP, LLM, and agent handlers; can block tool use"
+      notes: "5 handler types (command, http, mcp_tool, prompt, agent) across 29 lifecycle events; async hooks run in background with optional rewake; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering"
+    trustModel: "Deterministic scripts that run on lifecycle events; supports shell, HTTP, MCP tool, LLM, and agent handlers; can block tool use"
     sources:
       - label: "Hooks guide"
         url: "https://code.claude.com/docs/en/hooks-guide"
@@ -124,7 +124,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Includes plugin-only components (LSP servers, monitors) not available standalone; official Anthropic marketplace with submission review; npm packages as plugin source; managed marketplace restrictions for enterprise"
+      notes: "Includes plugin-only components (LSP servers, monitors, themes) not available standalone; official Anthropic marketplace with submission review; npm packages as plugin source; semver dependency constraints between plugins; managed marketplace restrictions for enterprise"
     trustModel: "Packaging layer that executes arbitrary code with user privileges; managed marketplace restrictions allow org lockdown"
     sources:
       - label: "Plugins"

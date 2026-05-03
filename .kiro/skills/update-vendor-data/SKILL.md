@@ -221,6 +221,7 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://developers.openai.com/codex/custom-prompts
 - https://developers.openai.com/codex/rules
 - https://developers.openai.com/codex/memories
+- https://developers.openai.com/codex/memories/chronicle
 - https://help.openai.com/en/articles/11369540-using-codex-with-chatgpt
 - https://developers.openai.com/codex/enterprise/managed-configuration
 - https://developers.openai.com/codex/agent-approvals-security
@@ -242,6 +243,8 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/hooks/actions/
 - https://kiro.dev/docs/hooks/types/
 - https://kiro.dev/docs/hooks/examples/
+- https://kiro.dev/docs/hooks/management/
+- https://kiro.dev/docs/hooks/best-practices/
 - https://kiro.dev/docs/editor/multi-root-workspaces/
 - https://kiro.dev/docs/mcp/
 - https://kiro.dev/docs/mcp/configuration/
@@ -259,6 +262,7 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/cli/chat/subagents/
 - https://kiro.dev/docs/cli/chat/planning-agent/
 - https://kiro.dev/docs/cli/acp/
+- https://kiro.dev/docs/autonomous-agent/
 - https://kiro.dev/docs/powers/
 - https://kiro.dev/docs/powers/installation/
 - https://kiro.dev/docs/powers/create/
@@ -271,8 +275,11 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/enterprise/governance/model/
 - https://kiro.dev/docs/enterprise/governance/web-tools/
 - https://kiro.dev/docs/enterprise/governance/api-keys/
+- https://kiro.dev/docs/enterprise/iam/
+- https://kiro.dev/docs/enterprise/identity-provider
 - https://kiro.dev/docs/cli/chat/permissions/
 - https://kiro.dev/docs/cli/chat/configuration/
+- https://kiro.dev/docs/cli/chat/security/
 - https://kiro.dev/docs/cli/mcp/registry/
 - https://kiro.dev/docs/cli/headless/
 - https://kiro.dev/docs/enterprise/governance/
