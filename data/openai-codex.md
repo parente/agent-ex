@@ -89,7 +89,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Three built-in agents (default, worker, explorer); custom agents as TOML files at user or project scope; max 6 concurrent threads, nesting depth of 1"
+      notes: "User-triggered parallel workflows with per-agent model selection and configurable reasoning effort (high/medium/low); designed to avoid context pollution via explicit delegation"
     trustModel: "Isolated workers that inherit parent sandbox policy; approval requests surface from inactive threads"
     sources:
       - label: "Subagents"
