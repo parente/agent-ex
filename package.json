@@ -15,14 +15,14 @@
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.59.1",
-		"@sveltejs/vite-plugin-svelte": "^7.1.1",
-		"@tailwindcss/vite": "^4.2.4",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@tailwindcss/vite": "^4.3.0",
 		"gray-matter": "^4.0.3",
 		"svelte": "^5.55.7",
 		"svelte-check": "^4.4.8",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^6.0.2",
-		"vite": "^8.0.11",
-		"yaml": "^2.8.4"
+		"vite": "^8.0.12",
+		"yaml": "^2.9.0"
 	}
 }
