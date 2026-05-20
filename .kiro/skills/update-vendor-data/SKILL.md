@@ -199,6 +199,10 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/reference/agentic-audit-log-events
 - https://docs.github.com/en/copilot/reference/copilot-cli-reference/acp-server
 - https://docs.github.com/en/copilot/how-tos/copilot-sdk/use-hooks/quickstart
+- https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-enterprise-plugin-standards
+- https://docs.github.com/en/copilot/concepts/agents/enterprise-management
+- https://docs.github.com/en/copilot/concepts/agents/copilot-cli/autopilot
+- https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet
 
 ### OpenAI Codex
 - https://developers.openai.com/codex/concepts/customization
@@ -283,6 +287,8 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/cli/mcp/registry/
 - https://kiro.dev/docs/cli/headless/
 - https://kiro.dev/docs/enterprise/governance/
+- https://kiro.dev/docs/web/autonomous-mode/
+- https://kiro.dev/docs/cli/mcp/tool-search/
 
 ### Claude Code
 - https://code.claude.com/docs/en/features-overview
@@ -310,3 +316,7 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://code.claude.com/docs/en/channels
 - https://code.claude.com/docs/en/sdk/subagents
 - https://www.anthropic.com/news/enabling-claude-code-to-work-more-autonomously
+- https://code.claude.com/docs/en/channels-reference
+- https://code.claude.com/docs/en/worktrees
+- https://code.claude.com/docs/en/scheduled-tasks
+- https://code.claude.com/docs/en/auto-mode-config
