@@ -203,6 +203,10 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://docs.github.com/en/copilot/concepts/agents/enterprise-management
 - https://docs.github.com/en/copilot/concepts/agents/copilot-cli/autopilot
 - https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet
+- https://docs.github.com/en/copilot/concepts/agents/copilot-cli/chronicle
+- https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started
+- https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/agent-loop
+- https://docs.github.com/en/copilot/how-tos/github-copilot-app/getting-started
 
 ### OpenAI Codex
 - https://developers.openai.com/codex/concepts/customization
@@ -238,6 +242,9 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://developers.openai.com/codex/speed
 - https://developers.openai.com/codex/security
 - https://developers.openai.com/codex/app/automations
+- https://developers.openai.com/codex/concepts/sandboxing
+- https://developers.openai.com/codex/app/computer-use
+- https://developers.openai.com/codex/permissions
 
 ### Amazon Kiro
 - https://kiro.dev/docs/steering/
@@ -289,6 +296,10 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://kiro.dev/docs/enterprise/governance/
 - https://kiro.dev/docs/web/autonomous-mode/
 - https://kiro.dev/docs/cli/mcp/tool-search/
+- https://kiro.dev/docs/cli/terminal-ui/
+- https://kiro.dev/docs/cli/chat/settings/
+- https://kiro.dev/docs/web/sandbox/
+- https://kiro.dev/docs/web/github/
 
 ### Claude Code
 - https://code.claude.com/docs/en/features-overview
@@ -320,3 +331,4 @@ These are starting points. Search the vendor domains above for additional pages 
 - https://code.claude.com/docs/en/worktrees
 - https://code.claude.com/docs/en/scheduled-tasks
 - https://code.claude.com/docs/en/auto-mode-config
+- https://code.claude.com/docs/en/workflows
