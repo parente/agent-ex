@@ -13,7 +13,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Walks up directory tree with on-demand subdirectory loading; rules can be path-scoped; @import syntax with 5-hop recursive depth supports AGENTS.md; managed policy CLAUDE.md at OS-level paths cannot be excluded; auto memory is a complementary per-working-tree system"
+      notes: "Walks up directory tree with on-demand subdirectory loading; rules can be path-scoped; @import syntax with 4-hop recursive depth supports AGENTS.md; managed policy CLAUDE.md at OS-level paths cannot be excluded; auto memory is a complementary per-working-tree system"
     trustModel: "Contextual guidance, not enforced configuration; compliance not guaranteed for vague or conflicting instructions"
     sources:
       - label: "Features overview"
@@ -46,7 +46,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Reference skills provide knowledge, action skills trigger workflows; follows Agent Skills open standard (agentskills.io); bundled skills include /batch, /debug, /simplify, /loop, and /claude-api; enterprise deployment via managed settings"
+      notes: "Reference skills provide knowledge, action skills trigger workflows; follows Agent Skills open standard (agentskills.io); bundled skills include /batch, /debug, /simplify, /loop, /run, /verify, /deep-research; enterprise deployment via managed settings"
     trustModel: "Reusable knowledge and workflows loaded on demand or invoked via /name; enterprise deployment via managed settings"
     sources:
       - label: "Skills"
@@ -62,7 +62,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "Five-tier scope hierarchy (local > project > user > plugin > claude.ai connectors); Tool Search defers tool loading until needed; supports HTTP, SSE, and stdio transports; OAuth 2.0 with scopes pinning; Claude Code can serve as an MCP server"
+      notes: "Five-tier scope hierarchy (local > project > user > plugin > claude.ai connectors); Tool Search defers tool loading until needed; supports HTTP, SSE, stdio, and WebSocket transports; OAuth 2.0 with headersHelper for dynamic auth; Claude Code can serve as an MCP server"
     trustModel: "Project-scoped servers require explicit approval; enterprise lockdown via managed-mcp.json allowlist/denylist"
     sources:
       - label: "MCP"
@@ -72,19 +72,19 @@ extensions:
 
   - name: Subagents
     normalizedFamily: agents
-    vendorTerms: [subagents, custom subagents, managed subagents]
+    vendorTerms: [subagents, custom subagents, managed subagents, Dynamic Workflows]
     scopes: [user-home, project-root, organization, cloud-session]
     interfaces: [terminal CLI, VS Code, Desktop, web]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Five priority levels (managed > CLI flag > project > user > plugin); built-in subagents include Explore, Plan, and Guide; supports isolation worktrees, persistent memory, and background mode; managed deployment via managed settings"
+      notes: "Five priority levels (managed > CLI flag > project > user > plugin); built-in Explore, Plan, and Guide agents; Dynamic Workflows (new) generate JavaScript orchestration to fan work across parallel subagent swarms; isolation via worktrees; forked subagents (experimental)"
     trustModel: "Isolated workers with their own context, prompt, and tools; only summary returns to parent"
     sources:
       - label: "Subagents"
         url: "https://code.claude.com/docs/en/sub-agents"
-      - label: "SDK subagents"
-        url: "https://code.claude.com/docs/en/sdk/subagents"
+      - label: "Dynamic Workflows"
+        url: "https://code.claude.com/docs/en/workflows"
 
   - name: Agent Teams
     normalizedFamily: agents
@@ -94,7 +94,7 @@ extensions:
     availability:
       status: experimental
       claimStrength: explicit
-      notes: "Multiple independent sessions with shared tasks and peer-to-peer messaging; task dependencies with file locking; plan approval workflow; two display modes (in-process and split-pane)"
+      notes: "Multiple independent sessions with shared tasks and peer-to-peer messaging; task dependencies with file locking; TeammateIdle hook for quality gates; two display modes (in-process and tmux)"
     trustModel: "Teammates inherit lead's permission settings; if lead uses --dangerously-skip-permissions all teammates do too"
     sources:
       - label: "Agent teams"
@@ -108,7 +108,7 @@ extensions:
     availability:
       status: current
       claimStrength: explicit
-      notes: "5 handler types (command, http, mcp_tool, prompt, agent) across 29 lifecycle events; async hooks run in background with optional rewake; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering"
+      notes: "5 handler types (command, http, mcp_tool, prompt, agent) across 29 lifecycle events; async hooks with asyncRewake for background execution; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering"
     trustModel: "Deterministic scripts that run on lifecycle events; supports shell, HTTP, MCP tool, LLM, and agent handlers; can block tool use"
     sources:
       - label: "Hooks guide"
@@ -118,13 +118,13 @@ extensions:
 
   - name: Plugins and Marketplaces
     normalizedFamily: plugins-distribution
-    vendorTerms: [plugins, plugin.json, marketplace, .claude-plugin]
+    vendorTerms: [plugins, plugin.json, marketplace, .claude-plugin, background monitors]
     scopes: [project-root, user-home, organization]
     interfaces: [terminal CLI, VS Code, Desktop, web, JetBrains]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Includes plugin-only components (LSP servers, monitors, themes) not available standalone; official Anthropic marketplace with submission review; npm packages as plugin source; semver dependency constraints between plugins; managed marketplace restrictions for enterprise"
+      notes: "Includes plugin-only components (LSP servers, monitors, themes, bin/ PATH additions); two official marketplaces (Anthropic-curated and community); strictPluginOnlyCustomization for enterprise lockdown; semver dependency constraints between plugins"
     trustModel: "Packaging layer that executes arbitrary code with user privileges; managed marketplace restrictions allow org lockdown"
     sources:
       - label: "Plugins"
@@ -136,13 +136,13 @@ extensions:
 
   - name: Settings and Managed Settings
     normalizedFamily: settings-policy
-    vendorTerms: [settings.json, managed settings, managed-settings.json, server-managed settings]
+    vendorTerms: [settings.json, managed settings, managed-settings.json, server-managed settings, policyHelper]
     scopes: [organization, user-home, project-root]
     interfaces: [terminal CLI, VS Code, Desktop, web, JetBrains]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Four-tier scope (managed > local > project > user); 60+ settings keys; server-managed settings via Claude.ai admin console; MDM delivery via macOS plist, Windows registry, or file-based; JSON schema at schemastore.org"
+      notes: "Four-tier scope (managed > local > project > user); 60+ settings keys; policyHelper for dynamic managed settings computation at startup; MDM delivery via macOS plist, Windows registry, or file-based with drop-in directory; fail-closed enforcement option"
     trustModel: "Admin-delivered managed settings cannot be overridden; controls permissions, hooks, environment variables, and model defaults"
     sources:
       - label: "Settings"
@@ -165,4 +165,4 @@ extensions:
         url: "https://code.claude.com/docs/en/output-styles"
 ---
 
-Claude Code has the broadest explicit extension taxonomy in a single .claude ecosystem. CLAUDE.md supports managed policy, project, user, and ancestor directory layers with @import for recursive file references including AGENTS.md. Hooks are the most capable with 4 handler types across 26 lifecycle events, and Agent Teams (experimental) enable multi-session coordination with shared tasks and peer-to-peer messaging.
+Claude Code has the broadest explicit extension taxonomy in a single .claude ecosystem. Dynamic Workflows (new) generate JavaScript orchestration scripts to fan work across parallel subagent swarms for codebase-wide tasks. Hooks are the most capable with 5 handler types across 29 lifecycle events, and plugins support enterprise lockdown via strictPluginOnlyCustomization.
