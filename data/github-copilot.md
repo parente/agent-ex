@@ -2,7 +2,7 @@
 vendor:
   id: github-copilot
   name: GitHub Copilot
-  interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK]
+  interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK, Copilot app]
 
 extensions:
   - name: Custom Instructions
@@ -25,13 +25,13 @@ extensions:
 
   - name: Agent Skills
     normalizedFamily: skills
-    vendorTerms: [agent skills, SKILL.md, .agents/skills, gh skill]
+    vendorTerms: [agent skills, SKILL.md, .agents/skills, gh skill, awesome-copilot]
     scopes: [project-root, user-home]
-    interfaces: [GitHub.com, VS Code, JetBrains, CLI, Copilot SDK]
+    interfaces: [GitHub.com, VS Code, JetBrains, CLI, Copilot SDK, Copilot app]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Based on open Agent Skills standard (agentskills.io); cross-tool compatible paths (.github/skills, .claude/skills, .agents/skills); gh skill CLI for discovery/install; org/enterprise skills coming soon"
+      notes: "Based on open Agent Skills standard (agentskills.io); cross-tool compatible paths (.github/skills, .claude/skills, .agents/skills); gh skill CLI for discovery/install; github/awesome-copilot community collection; org/enterprise skills coming soon"
     trustModel: "Reusable workflows loaded on demand when relevant; allowed-tools frontmatter pre-approves tool usage"
     sources:
       - label: "About agent skills"
@@ -59,11 +59,11 @@ extensions:
     normalizedFamily: mcp-tools
     vendorTerms: [MCP servers, GitHub MCP server, MCP Registry, MCP allowlist, toolsets]
     scopes: [machine, project-root, organization]
-    interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK]
+    interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK, Copilot app]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Available on all surfaces regardless of plan; GitHub MCP Registry in public preview; remote MCP servers without local setup; toolset customization for GitHub API capabilities; enterprise allowlist policy disabled by default for Business/Enterprise"
+      notes: "Available on all surfaces regardless of plan; GitHub MCP Registry in public preview; remote MCP servers without local setup; toolset customization for GitHub API capabilities; Copilot app (technical preview) supports repo-level MCP; enterprise allowlist policy disabled by default for Business/Enterprise"
     trustModel: "Tool calls subject to OAuth/PAT auth and allowlist enforcement; enterprise policies override org policies; push protection blocks secrets in AI-generated responses"
     sources:
       - label: "About MCP"
@@ -75,13 +75,13 @@ extensions:
 
   - name: Custom Agents
     normalizedFamily: agents
-    vendorTerms: [custom agents, agent profiles, .agent.md, Autopilot, Fleet]
+    vendorTerms: [custom agents, agent profiles, .agent.md, Autopilot, Fleet, agent apps]
     scopes: [user-home, project-root, organization]
-    interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK]
+    interfaces: [GitHub.com, VS Code, Visual Studio, JetBrains, Eclipse, Xcode, CLI, Copilot SDK, Copilot app]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Repo/org/enterprise scoping with lowest-level override; CLI adds Autopilot (autonomous), Fleet (parallel execution), and Chronicle (session persistence); Copilot SDK provides full programmatic agent loop with OpenTelemetry observability"
+      notes: "Markdown agent profiles with YAML frontmatter at repo/org/enterprise levels; JetBrains/Eclipse/Xcode in public preview; CLI adds Autopilot (autonomous), Fleet (parallel execution), and Chronicle (session persistence); Copilot SDK provides full programmatic agent loop with OpenTelemetry observability"
     trustModel: "Isolated persona with its own instructions, tool restrictions, and context; enterprise agents override org agents"
     sources:
       - label: "About custom agents"
@@ -146,4 +146,4 @@ extensions:
         url: "https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference"
 ---
 
-GitHub Copilot is strongest on repo, org, and enterprise sharing across GitHub surfaces. The Copilot SDK adds full programmatic access with agent loops, hooks, and OpenTelemetry observability. CLI plugins are the distribution unit with enterprise plugin standards for governance, and Autopilot/Fleet modes enable autonomous and parallel task execution.
+GitHub Copilot is strongest on repo, org, and enterprise sharing across GitHub surfaces. The Copilot app (technical preview) adds a standalone agent interface alongside the SDK's full programmatic access with agent loops, hooks, and OpenTelemetry observability. CLI plugins are the distribution unit with enterprise plugin standards for governance, and Autopilot/Fleet modes enable autonomous and parallel task execution.
