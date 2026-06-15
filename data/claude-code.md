@@ -72,13 +72,13 @@ extensions:
 
   - name: Subagents
     normalizedFamily: agents
-    vendorTerms: [subagents, custom subagents, managed subagents, Dynamic Workflows]
+    vendorTerms: [subagents, custom subagents, managed subagents, Dynamic Workflows, forked subagents]
     scopes: [user-home, project-root, organization, cloud-session]
     interfaces: [terminal CLI, VS Code, Desktop, web]
     availability:
       status: current
       claimStrength: explicit
-      notes: "Five priority levels (managed > CLI flag > project > user > plugin); built-in Explore, Plan, and Guide agents; Dynamic Workflows (new) generate JavaScript orchestration to fan work across parallel subagent swarms; isolation via worktrees; forked subagents (experimental)"
+      notes: "Five priority levels (managed > CLI flag > project > user > plugin); built-in Explore, Plan, and Guide agents; Dynamic Workflows generate JavaScript orchestration to fan work across parallel subagent swarms; forked subagents (/fork) inherit full conversation context; nested subagents up to depth 5; persistent memory with user/project/local scopes"
     trustModel: "Isolated workers with their own context, prompt, and tools; only summary returns to parent"
     sources:
       - label: "Subagents"
@@ -102,13 +102,13 @@ extensions:
 
   - name: Hooks
     normalizedFamily: hooks
-    vendorTerms: [hooks, agent hooks, async hooks]
+    vendorTerms: [hooks, agent hooks, async hooks, prompt hooks]
     scopes: [user-home, project-root, organization]
     interfaces: [terminal CLI, VS Code, Desktop]
     availability:
       status: current
       claimStrength: explicit
-      notes: "5 handler types (command, http, mcp_tool, prompt, agent) across 29 lifecycle events; async hooks with asyncRewake for background execution; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering"
+      notes: "5 handler types (command, http, mcp_tool, prompt, agent) across 30+ lifecycle events; async hooks with asyncRewake for background execution; PreToolUse hooks enforce policy even in bypass mode; if field enables granular tool+argument filtering; hooks definable in skill/agent frontmatter"
     trustModel: "Deterministic scripts that run on lifecycle events; supports shell, HTTP, MCP tool, LLM, and agent handlers; can block tool use"
     sources:
       - label: "Hooks guide"
@@ -165,4 +165,4 @@ extensions:
         url: "https://code.claude.com/docs/en/output-styles"
 ---
 
-Claude Code has the broadest explicit extension taxonomy in a single .claude ecosystem. Dynamic Workflows (new) generate JavaScript orchestration scripts to fan work across parallel subagent swarms for codebase-wide tasks. Hooks are the most capable with 5 handler types across 29 lifecycle events, and plugins support enterprise lockdown via strictPluginOnlyCustomization.
+Claude Code has the broadest explicit extension taxonomy in a single .claude ecosystem. Forked subagents (/fork) inherit the full parent conversation for side tasks without re-explaining context, while Dynamic Workflows generate JavaScript orchestration scripts to fan work across parallel subagent swarms. Hooks are the most capable with 5 handler types across 30+ lifecycle events, and plugins support enterprise lockdown via strictPluginOnlyCustomization.
